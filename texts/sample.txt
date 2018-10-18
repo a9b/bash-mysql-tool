@@ -1,0 +1,5 @@
+#users_m ユーザー管理
+user_id int(11) ユーザーID
+name varchar(255) 名前
+description longtext 詳細
+status int(11) (0:非会員,1:会員,99:退会)

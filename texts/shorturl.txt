@@ -1,0 +1,4 @@
+#url_t URL管理
+url_id bigint
+url text url
+hash text hash
