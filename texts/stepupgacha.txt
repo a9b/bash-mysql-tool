@@ -1,0 +1,15 @@
+#gacha_stepup_user_t ユーザー管理
+gacha_stepup_user_id int(11) ID
+user_id int(11) ユーザーID
+festival_id int(11) ステップアップID
+step_num int(11)
+finished_flg tinyint(1)
+
+#gacha_stepup_mapping_m ステップアップガチャ管理
+gacha_stepup_mapping_id int(11) ID
+festival_id int(11) ステップアップID
+step_num int(11)
+gacha_thema_id int(11)
+decision_flg tinyint(1)
+decision_rank int(11)
+decision_num int(11)

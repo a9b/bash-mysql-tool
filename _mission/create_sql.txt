@@ -1,0 +1,117 @@
+CREATE TABLE IF NOT EXISTS `reward_mapping_m`(
+`reward_mapping_id` int(11) NOT NULL AUTO_INCREMENT COMMENT "報酬ID",
+`table_name` varchar(255) NOT NULL COMMENT "",
+`primary_id` int(11) UNSIGNED NOT NULL COMMENT "",
+`reward_id` int(11) UNSIGNED NOT NULL COMMENT "報酬ID",
+`create_time` datetime NOT NULL COMMENT "作成日時",
+`update_time` datetime NOT NULL COMMENT "更新日時",
+`delete_flg` tinyint(4) UNSIGNED NOT NULL COMMENT "削除フラグ(0:正常データ,1:削除データ)",
+PRIMARY KEY (`reward_mapping_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `reward_mapping_m` CHANGE `delete_flg`  `delete_flg` TINYINT( 4 ) NOT NULL DEFAULT  0 COMMENT  "削除フラグ(0:正常データ,1:削除データ)";
+ALTER TABLE `reward_mapping_m` COMMENT "報酬管理";
+
+CREATE TABLE IF NOT EXISTS `reward_m`(
+`reward_id` int(11) NOT NULL AUTO_INCREMENT COMMENT "報酬ID",
+`item_category` int(11) UNSIGNED NOT NULL COMMENT "",
+`item_value` int(11) UNSIGNED NOT NULL COMMENT "",
+`item_num` int(11) UNSIGNED NOT NULL COMMENT "",
+`prize_set_msg` varchar(255) NOT NULL COMMENT "",
+`create_time` datetime NOT NULL COMMENT "作成日時",
+`update_time` datetime NOT NULL COMMENT "更新日時",
+`delete_flg` tinyint(4) UNSIGNED NOT NULL COMMENT "削除フラグ(0:正常データ,1:削除データ)",
+PRIMARY KEY (`reward_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `reward_m` CHANGE `delete_flg`  `delete_flg` TINYINT( 4 ) NOT NULL DEFAULT  0 COMMENT  "削除フラグ(0:正常データ,1:削除データ)";
+ALTER TABLE `reward_m` COMMENT "報酬管理";
+
+CREATE TABLE IF NOT EXISTS `challenge_group_m`(
+`challenge_group_id` int(11) NOT NULL AUTO_INCREMENT COMMENT "",
+`start_time` datetime NOT NULL COMMENT "",
+`end_time` datetime NOT NULL COMMENT "",
+`open_condition_challenge_group_id` int(11) UNSIGNED NOT NULL COMMENT "",
+`name` varchar(255) NOT NULL COMMENT "名前",
+`description` longtext NOT NULL COMMENT "詳細",
+`display_priority` int(11) UNSIGNED NOT NULL COMMENT "",
+`create_time` datetime NOT NULL COMMENT "作成日時",
+`update_time` datetime NOT NULL COMMENT "更新日時",
+`delete_flg` tinyint(4) UNSIGNED NOT NULL COMMENT "削除フラグ(0:正常データ,1:削除データ)",
+PRIMARY KEY (`challenge_group_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `challenge_group_m` CHANGE `delete_flg`  `delete_flg` TINYINT( 4 ) NOT NULL DEFAULT  0 COMMENT  "削除フラグ(0:正常データ,1:削除データ)";
+ALTER TABLE `challenge_group_m` COMMENT "チャレンジ管理";
+
+CREATE TABLE IF NOT EXISTS `user_action_log`(
+`user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT "ユーザーID",
+`action_type` varchar(255) NOT NULL COMMENT "",
+`value` int(11) UNSIGNED NOT NULL COMMENT "",
+`create_time` datetime NOT NULL COMMENT "作成日時",
+`delete_flg` tinyint(4) UNSIGNED NOT NULL COMMENT "削除フラグ(0:正常データ,1:削除データ)",
+PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `user_action_log` CHANGE `delete_flg`  `delete_flg` TINYINT( 4 ) NOT NULL DEFAULT  0 COMMENT  "削除フラグ(0:正常データ,1:削除データ)";
+ALTER TABLE `user_action_log` COMMENT "ユーザー管理";
+
+CREATE TABLE IF NOT EXISTS `challenge_group_user_status_t`(
+`challenge_user_status_id` int(11) NOT NULL AUTO_INCREMENT COMMENT "チャレンジID",
+`challenge_group_id` int(11) UNSIGNED NOT NULL COMMENT "",
+`user_id` int(11) UNSIGNED NOT NULL COMMENT "ユーザーID",
+`value` int(11) UNSIGNED NOT NULL COMMENT "",
+`opened_flg` tinyint(1) UNSIGNED NOT NULL COMMENT "",
+`finished_flg` tinyint(1) UNSIGNED NOT NULL COMMENT "",
+`watched_flg` tinyint(1) UNSIGNED NOT NULL COMMENT "マイページ通知用",
+`create_time` datetime NOT NULL COMMENT "作成日時",
+`update_time` datetime NOT NULL COMMENT "更新日時",
+`delete_flg` tinyint(4) UNSIGNED NOT NULL COMMENT "削除フラグ(0:正常データ,1:削除データ)",
+PRIMARY KEY (`challenge_user_status_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `challenge_group_user_status_t` CHANGE `delete_flg`  `delete_flg` TINYINT( 4 ) NOT NULL DEFAULT  0 COMMENT  "削除フラグ(0:正常データ,1:削除データ)";
+ALTER TABLE `challenge_group_user_status_t` COMMENT "ユーザー管理";
+
+CREATE TABLE IF NOT EXISTS `challenge_user_status_t`(
+`challenge_user_status_id` int(11) NOT NULL AUTO_INCREMENT COMMENT "チャレンジID",
+`challenge_id` int(11) UNSIGNED NOT NULL COMMENT "",
+`user_id` int(11) UNSIGNED NOT NULL COMMENT "ユーザーID",
+`value` int(11) UNSIGNED NOT NULL COMMENT "",
+`finished_flg` tinyint(1) UNSIGNED NOT NULL COMMENT "",
+`watched_flg` tinyint(1) UNSIGNED NOT NULL COMMENT "マイページ通知用",
+`create_time` datetime NOT NULL COMMENT "作成日時",
+`update_time` datetime NOT NULL COMMENT "更新日時",
+`delete_flg` tinyint(4) UNSIGNED NOT NULL COMMENT "削除フラグ(0:正常データ,1:削除データ)",
+PRIMARY KEY (`challenge_user_status_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `challenge_user_status_t` CHANGE `delete_flg`  `delete_flg` TINYINT( 4 ) NOT NULL DEFAULT  0 COMMENT  "削除フラグ(0:正常データ,1:削除データ)";
+ALTER TABLE `challenge_user_status_t` COMMENT "ユーザー管理";
+
+CREATE TABLE IF NOT EXISTS `challenge_user_action_log`(
+`user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT "ユーザーID",
+`action_type` varchar(255) NOT NULL COMMENT "",
+`value` int(11) UNSIGNED NOT NULL COMMENT "",
+`create_time` datetime NOT NULL COMMENT "作成日時",
+`delete_flg` tinyint(4) UNSIGNED NOT NULL COMMENT "削除フラグ(0:正常データ,1:削除データ)",
+PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `challenge_user_action_log` CHANGE `delete_flg`  `delete_flg` TINYINT( 4 ) NOT NULL DEFAULT  0 COMMENT  "削除フラグ(0:正常データ,1:削除データ)";
+ALTER TABLE `challenge_user_action_log` COMMENT "ステージクリア後には記載されないログ";
+
+CREATE TABLE IF NOT EXISTS `challenge_m`(
+`challenge_id` int(11) NOT NULL AUTO_INCREMENT COMMENT "チャレンジID",
+`challenge_group_id` int(11) UNSIGNED NOT NULL COMMENT "",
+`action_type` varchar(255) NOT NULL COMMENT "",
+`need_value` int(11) UNSIGNED NOT NULL COMMENT "",
+`name` varchar(255) NOT NULL COMMENT "名前",
+`description` longtext NOT NULL COMMENT "詳細",
+`display_priority` int(11) UNSIGNED NOT NULL COMMENT "",
+`create_time` datetime NOT NULL COMMENT "作成日時",
+`update_time` datetime NOT NULL COMMENT "更新日時",
+`delete_flg` tinyint(4) UNSIGNED NOT NULL COMMENT "削除フラグ(0:正常データ,1:削除データ)",
+PRIMARY KEY (`challenge_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `challenge_m` CHANGE `delete_flg`  `delete_flg` TINYINT( 4 ) NOT NULL DEFAULT  0 COMMENT  "削除フラグ(0:正常データ,1:削除データ)";
+ALTER TABLE `challenge_m` COMMENT "チャレンジ管理";
+
+
+ALTER TABLE  `user_action_log` CHANGE  `user_id`  `user_id` INT( 11 ) NOT NULL COMMENT  'ユーザーID';
+ALTER TABLE  `challenge_user_action_log` CHANGE  `user_id`  `user_id` INT( 11 ) NOT NULL COMMENT  'ユーザーID';
+ALTER TABLE  `user_action_log` DROP PRIMARY KEY ;
+ALTER TABLE  `challenge_user_action_log` DROP PRIMARY KEY ;

@@ -1,0 +1,57 @@
+#challenge_group_m チャレンジ管理
+challenge_group_id int(11)
+start_time datetime
+end_time datetime
+open_condition_challenge_group_id int(11)
+name varchar(255) 名前
+description longtext 詳細
+display_priority int(11)
+
+#challenge_m チャレンジ管理
+challenge_id int(11) チャレンジID
+challenge_group_id int(11)
+action_type varchar(255)
+need_value int(11)
+name varchar(255) 名前
+description longtext 詳細
+display_priority int(11)
+
+#challenge_group_user_status_t ユーザー管理
+challenge_user_status_id int(11) チャレンジID
+challenge_group_id int(11)
+user_id int(11) ユーザーID
+value int(11)
+opened_flg tinyint(1)
+finished_flg tinyint(1)
+watched_flg tinyint(1) マイページ通知用
+
+#challenge_user_status_t ユーザー管理
+challenge_user_status_id int(11) チャレンジID
+challenge_id int(11)
+user_id int(11) ユーザーID
+value int(11)
+finished_flg tinyint(1)
+watched_flg tinyint(1) マイページ通知用
+
+#challenge_user_action_log ステージクリア後には記載されないログ
+user_id int(11) ユーザーID
+action_type varchar(255)
+value int(11)
+
+#user_action_log ユーザー管理
+user_id int(11) ユーザーID
+action_type varchar(255)
+value int(11)
+
+#reward_mapping_m 報酬管理
+reward_mapping_id int(11) 報酬ID
+table_name varchar(255)
+primary_id int(11)
+reward_id int(11) 報酬ID
+
+#reward_m 報酬管理
+reward_id int(11) 報酬ID
+item_category int(11)
+item_value int(11)
+item_num int(11)
+prize_set_msg varchar(255)

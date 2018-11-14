@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS
+DROP TABLE IF EXISTS `shoplist`.`gacha_stepup_user_t`;
+DROP TABLE IF EXISTS `shoplist`.`gacha_stepup_mapping_m`;

@@ -1,4 +1,4 @@
-#/bin/sh -x
+#!/bin/bash
 
 if [ $# -ne 1 ];then
   echo "引数が正しくありません"
@@ -15,7 +15,7 @@ if [ ! -f ${target_file} ];then
 fi
 
 # [TODO] seki ファイルエンコードの確認 
-csplit ${target_file} /^#/ {*} > /dev/null
+gcsplit ${target_file} /^#/ {*} > /dev/null
 
 tmp=${target_file##*/}
 target_dir="./_"${tmp%.*}
@@ -47,7 +47,7 @@ do
 
     gsub(/#/,"`",table_name)
     gsub(/$/,"`",table_name)
-    str=str " `shoplist`." table_name "("
+    str=str " `dev_yhunter`." table_name "("
 
     # next を実行すると以下のパターンマッチングを中止し次の行を読み込む.
     next
@@ -96,8 +96,8 @@ do
       # printf も使える.
       #printf("テキストは全%d行でした.\n", NR)
       str = str "\n) ENGINE=InnoDB DEFAULT CHARSET=utf8;"
-      str = str "\nALTER TABLE `shoplist`." table_name " CHANGE `delete_flg`  `delete_flg` TINYINT( 4 ) NOT NULL DEFAULT  '0' COMMENT  \"削除フラグ(0:正常データ,1:削除データ)\";"
-      str = str "\nALTER TABLE `shoplist`." table_name " COMMENT \"" table_comment "\";"
+      str = str "\nALTER TABLE " table_name " CHANGE `delete_flg`  `delete_flg` TINYINT( 4 ) NOT NULL DEFAULT  '0' COMMENT  \"削除フラグ(0:正常データ,1:削除データ)\";"
+      str = str "\nALTER TABLE " table_name " COMMENT \"" table_comment "\";"
       str = str "\n"
       print str >> target_dir "/create_sql.txt"
     }

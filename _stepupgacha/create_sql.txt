@@ -1,0 +1,32 @@
+CREATE TABLE IF NOT EXISTS `gacha_stepup_user_t`(
+`gacha_stepup_user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT "ID",
+`user_id` int(11) UNSIGNED NOT NULL COMMENT "ユーザーID",
+`festival_id` int(11) UNSIGNED NOT NULL COMMENT "ステップアップID",
+`step_num` int(11) UNSIGNED NOT NULL COMMENT "",
+`finished_flg` tinyint(1) UNSIGNED NOT NULL COMMENT "",
+`create_time` datetime NOT NULL COMMENT "作成日時",
+`update_time` datetime NOT NULL COMMENT "更新日時",
+`delete_flg` tinyint(4) UNSIGNED NOT NULL COMMENT "削除フラグ(0:正常データ,1:削除データ)",
+PRIMARY KEY (`gacha_stepup_user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `gacha_stepup_user_t` CHANGE `delete_flg`  `delete_flg` TINYINT( 4 ) NOT NULL DEFAULT  0 COMMENT  "削除フラグ(0:正常データ,1:削除データ)";
+ALTER TABLE `gacha_stepup_user_t` COMMENT "ユーザー管理";
+
+CREATE TABLE IF NOT EXISTS `gacha_stepup_mapping_m`(
+`gacha_stepup_mapping_id` int(11) NOT NULL AUTO_INCREMENT COMMENT "ID",
+`festival_id` int(11) UNSIGNED NOT NULL COMMENT "ステップアップID",
+`step_num` int(11) UNSIGNED NOT NULL COMMENT "",
+`gacha_thema_id` int(11) UNSIGNED NOT NULL COMMENT "",
+`decision_flg` tinyint(1) UNSIGNED NOT NULL COMMENT "",
+`decision_rank` int(11) UNSIGNED NOT NULL COMMENT "",
+`decision_num` int(11) UNSIGNED NOT NULL COMMENT "",
+`create_time` datetime NOT NULL COMMENT "作成日時",
+`create_user_id` int(11) UNSIGNED NOT NULL COMMENT "作成ID(1:web,2:batch)",
+`update_time` datetime NOT NULL COMMENT "更新日時",
+`update_user_id` int(11) UNSIGNED NOT NULL COMMENT "更新者ID(1:web,2:batch)",
+`delete_flg` tinyint(4) UNSIGNED NOT NULL COMMENT "削除フラグ(0:正常データ,1:削除データ)",
+PRIMARY KEY (`gacha_stepup_mapping_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `gacha_stepup_mapping_m` CHANGE `delete_flg`  `delete_flg` TINYINT( 4 ) NOT NULL DEFAULT  0 COMMENT  "削除フラグ(0:正常データ,1:削除データ)";
+ALTER TABLE `gacha_stepup_mapping_m` COMMENT "ステップアップガチャ管理";
+
